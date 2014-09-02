@@ -1,0 +1,21 @@
+{
+  "name": "Tomatnode",
+  "version": "0.0.1",
+  "description": "Pomodoro timer in Node.js",
+  "main": "tomatnode.js",
+  "dependencies": {
+    "speaker": "^0.2.1",
+    "wav": "^0.1.2",
+    "time-resolutions": "^0.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pomodoro",
+    "timer"
+  ],
+  "author": "Jodi Warren",
+  "license": "ISC"
+}
