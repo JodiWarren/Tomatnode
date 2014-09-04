@@ -1,11 +1,13 @@
-var fs = require('fs'),
-	wav = require('wav'),
-	Speaker = require('speaker'),
-	resolutions = require('time-resolutions'),
-	pomTime = process.argv[2],
-	shortBreak = process.argv[3],
-	longBreak = process.argv[4],
-	Notification = require('node-notifier');
+var fs           = require('fs'),
+	wav          = require('wav'),
+	Speaker      = require('speaker'),
+	resolutions  = require('time-resolutions'),
+	argv         = require('yargs').argv
+	Notification = require('node-notifier'),
+	pomTime      = argv.pom,
+	shortBreak   = argv.short,
+	longBreak    = argv.long,
+	mute         = argv.mute;
 
 
 // Time will be in minutes, so convert to miliseconds
@@ -42,6 +44,9 @@ var tomatnode = {
 		}
 	},
 	playSound: function(filename) {
+		if ( mute || ! filename ) {
+			return;
+		}
 		var audioFile = fs.createReadStream(filename);
 		var reader = new wav.Reader();
 		reader.on('format', function(format){
