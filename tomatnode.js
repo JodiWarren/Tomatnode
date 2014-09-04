@@ -10,6 +10,8 @@ var fs           = require('fs'),
 	mute         = argv.mute;
 
 
+// console.log(pomTime, shortBreak, longBreak);
+
 // Time will be in minutes, so convert to miliseconds
 var minsToMilliseconds = function(time) {
 	return time*60*1000;
