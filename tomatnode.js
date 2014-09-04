@@ -4,12 +4,16 @@ var fs = require('fs'),
 	resolutions = require('time-resolutions'),
 	pomTime = process.argv[2],
 	shortBreak = process.argv[3],
-	longBreak = process.argv[4];
+	longBreak = process.argv[4],
+	Notification = require('node-notifier');
+
 
 // Time will be in minutes, so convert to miliseconds
 var minsToMilliseconds = function(time) {
 	return time*60*1000;
 }
+
+var notifier = new Notification();
 
 var tomatnode = {
 	pomTime : minsToMilliseconds(pomTime),
@@ -70,6 +74,11 @@ var tomatnode = {
 
 	},
 	pomTimer : function(){
+		notifier.notify({
+			title: 'Tomatnode',
+			icon: __dirname + "/tomato.png",
+		    message: 'Starting pomodoro'
+		});
 		console.log('\nStarting pomodoro');
 		this.playSound('2.wav');
 		var currentTimer = setInterval(function pomInterval(){
@@ -91,6 +100,11 @@ var tomatnode = {
 		}, 1000);
 	},
 	shortBreakTimer : function(){
+		notifier.notify({
+			title: 'Tomatnode',
+		    message: 'Short break time!',
+			icon: __dirname + "/tomato.png",
+		});
 		console.log('\nStarting short break');
 		tomatnode.playSound('1.wav');
 		var currentTimer = setInterval(function pomInterval(){
@@ -108,6 +122,11 @@ var tomatnode = {
 		}, 1000);
 	},
 	longBreakTimer : function(){
+		notifier.notify({
+			title: 'Tomatnode',
+			icon: __dirname + "/tomato.png",
+		    message: 'Long break time!'
+		});
 		console.log('\nStarting long break');
 		tomatnode.playSound('3.wav');
 		var currentTimer = setInterval(function pomInterval(){
